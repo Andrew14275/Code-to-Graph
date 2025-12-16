@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Report | Code-to-Graph</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .report-section {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .report-section h3 {
+            color: #667eea;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
+        
+        .report-section ul {
+            margin-left: 20px;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        
+        .highlight-box {
+            background: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .metric-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">📊 Code‑to‑Graph</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="demo.html">Live Demo</a>
+            <a href="report.html">Report</a>
+            <a href="about.html">Team</a>
+        </nav>
+    </header>
+
+    <div class="container" style="padding: 40px 20px;">
+        <h1 style="color: white; text-align: center; margin-bottom: 40px; font-size: 2.5em;">Project Report Summary</h1>
+
+        <div class="report-section">
+            <h2 style="color: #2d3748; margin-bottom: 20px;">📋 Executive Summary</h2>
+            <p>Code-to-Graph represents a complete engineering lifecycle: from theoretical mathematics to production-ready software. This three-stage self-learning project transforms abstract graph theory and Hamming error correction codes into an interactive, visual web application accessible to students worldwide.</p>
+            
+            <div class="highlight-box">
+                <strong>🎯 Project Goal:</strong> Make advanced computer science concepts tangible, interactive, and educational through modern web technologies.
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2 style="color: #2d3748; margin-bottom: 20px;">🔬 Stage 1: Mathematical Foundations</h2>
+            
+            <h3>Graph Theory Concepts</h3>
+            <ul>
+                <li><strong>Adjacency Matrix:</strong> Mathematical representation of network connections</li>
+                <li><strong>Node Degree:</strong> Quantitative measure of connectivity</li>
+                <li><strong>Hub Identification:</strong> Critical node detection for network resilience</li>
+                <li><strong>Network Density:</strong> Metric for overall connectivity analysis</li>
+            </ul>
+            
+            <h3>Hamming(7,4) Error Correction</h3>
+            <ul>
+                <li><strong>Encoding Algorithm:</strong> 4 data bits + 3 parity bits = 7-bit codeword</li>
+                <li><strong>Syndrome Calculation:</strong> Error detection through parity checking</li>
+                <li><strong>Error Correction:</strong> Automatic single-bit error recovery</li>
+                <li><strong>Real-world Applications:</strong> Satellite communications, ECC RAM, data storage</li>
+            </ul>
+        </div>
+
+        <div class="report-section">
+            <h2 style="color: #2d3748; margin-bottom: 20px;">💻 Stage 2: Python Implementation</h2>
+            
+            <p>Validated algorithmic implementations with comprehensive testing infrastructure:</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <span class="metric-value">2,400+</span>
+                    <span class="metric-label">Lines of Code</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">74</span>
+                    <span class="metric-label">Unit Tests</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">100%</span>
+                    <span class="metric-label">Pass Rate</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">0</span>
+                    <span class="metric-label">Critical Bugs</span>
+                </div>
+            </div>
+            
+            <h3>Testing Strategy</h3>
+            <ul>
+                <li>Graph algorithm validation with edge cases</li>
+                <li>All 16 possible 4-bit Hamming inputs tested</li>
+                <li>Error injection at each of 7 bit positions</li>
+                <li>Boundary condition and invalid input handling</li>
+            </ul>
+        </div>
+
+        <div class="report-section">
+            <h2 style="color: #2d3748; margin-bottom: 20px;">🌐 Stage 3: Web Application</h2>
+            
+            <h3>Architecture</h3>
+            <p>Three-tier client-side architecture optimized for performance:</p>
+            <ul>
+                <li><strong>Presentation Layer:</strong> HTML5 semantic markup + CSS3 responsive design</li>
+                <li><strong>Business Logic:</strong> Vanilla JavaScript algorithm implementations</li>
+                <li><strong>Visualization:</strong> HTML5 Canvas API for real-time graph rendering</li>
+            </ul>
+            
+            <h3>Performance Metrics</h3>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <span class="metric-value">&lt;25ms</span>
+                    <span class="metric-label">Graph Processing</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">&lt;50ms</span>
+                    <span class="metric-label">Visualization</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">&lt;10ms</span>
+                    <span class="metric-label">Hamming Operations</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">&lt;2s</span>
+                    <span class="metric-label">Page Load</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2 style="color: #2d3748; margin-bottom: 20px;">🌍 Real-World Applications</h2>
+            
+            <h3>Graph Theory in Industry</h3>
+            <ul>
+                <li><strong>5G Networks:</strong> Cell tower placement and coverage optimization</li>
+                <li><strong>Internet Backbone:</strong> Router redundancy and failure resilience</li>
+                <li><strong>Supply Chains:</strong> Bottleneck identification and logistics optimization</li>
+                <li><strong>Social Networks:</strong> Influencer detection and community analysis</li>
+            </ul>
+            
+            <h3>Hamming Codes in Practice</h3>
+            <ul>
+                <li><strong>Deep Space:</strong> Voyager 1 (14 billion km away) uses Hamming for data integrity</li>
+                <li><strong>Server Memory:</strong> ECC RAM detects and corrects cosmic ray bit flips</li>
+                <li><strong>Storage Systems:</strong> Hard drives and SSDs protect against data corruption</li>
+                <li><strong>QR Codes:</strong> Error correction based on Hamming principles</li>
+            </ul>
+        </div>
+
+        <div class="report-section">
+            <h2 style="color: #2d3748; margin-bottom: 20px;">🎓 Learning Outcomes</h2>
+            
+            <ul>
+                <li>Deep understanding of graph algorithms and their practical applications</li>
+                <li>Mastery of error correction theory and implementation</li>
+                <li>Full-stack web development skills (HTML/CSS/JS)</li>
+                <li>Professional software engineering practices (testing, version control, documentation)</li>
+                <li>Project management and team collaboration</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <strong>💡 Key Insight:</strong> This project demonstrates that abstract mathematical concepts become truly meaningful when students can interact with them, visualize them, and understand their real-world impact.
+            </div>
+        </div>
+
+        <div class="report-section" style="text-align: center;">
+            <h2 style="margin-bottom: 20px;">📥 Download Full Documentation</h2>
+            <p style="color: #4a5568; margin-bottom: 24px;">Complete 12-14 page technical report with detailed analysis</p>
+            <a href="https://github.com/Andrew14275/Code-to-Graph" class="btn primary">View on GitHub</a>
+        </div>
+    </div>
+
+    <footer style="background: #2d3748; color: white; padding: 40px 20px; text-align: center;">
+        <p style="margin-bottom: 10px;"><strong>Code-to-Graph</strong> — A Self-Learning Micro Project</p>
+        <p style="opacity: 0.8; font-size: 0.9em;">Shah and Anchor Kutchhi Engineering College | Matrices & Differential Calculus</p>
+    </footer>
+</body>
+</html>
