@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Theory & Hamming Code Demo | Code-to-Graph</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .demo-section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .demo-section h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button.secondary {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        }
+        
+        #graphCanvas {
+            width: 100%;
+            height: 450px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f8fafc;
+            margin-top: 20px;
+            display: block;
+        }
+        
+        .results {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #48bb78;
+            margin-top: 20px;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        .error {
+            background: #fff5f5;
+            border-left-color: #f56565;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .results h3 {
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+        
+        .results p {
+            margin: 8px 0;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .metrics-table th, .metrics-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .metrics-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .metrics-table tr:hover {
+            background: #f7fafc;
+        }
+        
+        .hamming-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #d53f8c;
+            font-weight: 600;
+        }
+        
+        .example-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hamming-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">📊 Code‑to‑Graph</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="demo.html">Live Demo</a>
+            <a href="report.html">Report</a>
+            <a href="about.html">Team</a>
+        </nav>
+    </header>
+
+    <div class="demo-container">
+        <!-- Graph Theory Section -->
+        <div class="demo-section">
+            <h2>🌐 Graph Network Visualization</h2>
+            <p style="color: #718096; margin-bottom: 20px;">
+                Enter nodes and edges to visualize network topology, calculate metrics, and identify critical infrastructure.
+            </p>
+            
+            <div class="input-group">
+                <label>Node Names (comma-separated):</label>
+                <input type="text" id="nodesInput" placeholder="A, B, C, D" value="A, B, C, D">
+                <small style="color: #718096;">Example: Router1, Router2, Server1</small>
+            </div>
+            
+            <div class="input-group">
+                <label>Edges (one per line, format: Node1-Node2):</label>
+                <textarea id="edgesInput" rows="5" placeholder="A-B&#10;B-C&#10;C-A&#10;A-D">A-B
+B-C
+C-A
+A-D</textarea>
+                <small style="color: #718096;">Each line represents a connection between two nodes</small>
+            </div>
+            
+            <button onclick="visualizeGraph()">🎨 Visualize Graph</button>
+            <button onclick="loadExample1()" class="secondary">Example 1: Simple Network</button>
+            <button onclick="loadExample2()" class="secondary">Example 2: Ring Topology</button>
+            
+            <canvas id="graphCanvas"></canvas>
+            <div id="graphResults"></div>
+        </div>
+        
+        <!-- Hamming Code Section -->
+        <div class="demo-section">
+            <h2>🔧 Hamming(7,4) Error Correction Code</h2>
+            <p style="color: #718096; margin-bottom: 20px;">
+                Encode 4-bit messages, simulate transmission errors, and watch automatic error correction in action.
+            </p>
+            
+            <div class="hamming-grid">
+                <!-- Encoder -->
+                <div>
+                    <div class="input-group">
+                        <label>📤 Encode: 4-bit Message</label>
+                        <input type="text" id="hammingMessage" placeholder="1011" maxlength="4" value="1011">
+                        <small style="color: #718096;">Enter 4 binary digits (0 or 1)</small>
+                    </div>
+                    <button onclick="hammingEncode()">Encode Message</button>
+                    <div id="encodeResult"></div>
+                </div>
+                
+                <!-- Decoder -->
+                <div>
+                    <div class="input-group">
+                        <label>📥 Decode: 7-bit Received Codeword</label>
+                        <input type="text" id="hammingReceived" placeholder="0110011" maxlength="7" value="0110011">
+                        <small style="color: #718096;">Enter 7 binary digits (may contain 1 error)</small>
+                    </div>
+                    <button onclick="hammingDecode()">Decode & Correct</button>
+                    <div id="decodeResult"></div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #ebf8ff; border-radius: 8px; border-left: 4px solid #3182ce;">
+                <strong>💡 Try This:</strong> After encoding, change one bit in the codeword and decode to see error correction!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== GRAPH VISUALIZATION ====================
+        
+        function visualizeGraph() {
+            const nodesInput = document.getElementById('nodesInput').value.trim();
+            const edgesInput = document.getElementById('edgesInput').value.trim();
+            
+            if (!nodesInput) {
+                showGraphError('Please enter at least one node');
+                return;
+            }
+            
+            if (!edgesInput) {
+                showGraphError('Please enter at least one edge');
+                return;
+            }
+            
+            const nodes = nodesInput.split(',').map(n => n.trim()).filter(n => n);
+            const edges = edgesInput.split('\n').map(e => e.trim()).filter(e => e);
+            
+            if (nodes.length < 2) {
+                showGraphError('Need at least 2 nodes for a graph');
+                return;
+            }
+            
+            // Validate edges
+            for (let edge of edges) {
+                const parts = edge.split('-');
+                if (parts.length !== 2) {
+                    showGraphError(`Invalid edge format: "${edge}". Use format: A-B`);
+                    return;
+                }
+                const from = parts[0].trim();
+                const to = parts[1].trim();
+                if (!nodes.includes(from)) {
+                    showGraphError(`Node "${from}" in edge "${edge}" not found in node list`);
+                    return;
+                }
+                if (!nodes.includes(to)) {
+                    showGraphError(`Node "${to}" in edge "${edge}" not found in node list`);
+                    return;
+                }
+            }
+            
+            // Calculate metrics
+            const adjMatrix = createAdjacencyMatrix(nodes, edges);
+            const degrees = calculateDegrees(adjMatrix);
+            const hubIndex = findHubNode(degrees);
+            const density = calculateDensity(nodes.length, edges.length);
+            const avgDegree = degrees.reduce((a, b) => a + b, 0) / nodes.length;
+            
+            // Visualize
+            drawGraph(nodes, edges, degrees);
+            
+            // Show results
+            showGraphResults(nodes, edges, adjMatrix, degrees, hubIndex, density, avgDegree);
+        }
+        
+        function createAdjacencyMatrix(nodes, edges) {
+            const n = nodes.length;
+            const matrix = Array(n).fill().map(() => Array(n).fill(0));
+            
+            for (let edge of edges) {
+                const [from, to] = edge.split('-').map(s => s.trim());
+                const i = nodes.indexOf(from);
+                const j = nodes.indexOf(to);
+                matrix[i][j] = 1;
+                matrix[j][i] = 1; // Undirected graph
+            }
+            
+            return matrix;
+        }
+        
+        function calculateDegrees(matrix) {
+            return matrix.map(row => row.reduce((a, b) => a + b, 0));
+        }
+        
+        function findHubNode(degrees) {
+            const maxDegree = Math.max(...degrees);
+            return degrees.indexOf(maxDegree);
+        }
+        
+        function calculateDensity(n, e) {
+            return ((2 * e) / (n * (n - 1))) * 100;
+        }
+        
+        function drawGraph(nodes, edges, degrees) {
+            const canvas = document.getElementById('graphCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = Math.min(canvas.width, canvas.height) * 0.35;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Calculate node positions
+            const positions = nodes.map((_, i) => {
+                const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
+                return {
+                    x: centerX + Math.cos(angle) * radius,
+                    y: centerY + Math.sin(angle) * radius
+                };
+            });
+            
+            // Draw edges first
+            ctx.strokeStyle = '#a0aec0';
+            ctx.lineWidth = 2;
+            
+            const drawnEdges = new Set();
+            for (let edge of edges) {
+                const [from, to] = edge.split('-').map(s => s.trim());
+                const i = nodes.indexOf(from);
+                const j = nodes.indexOf(to);
+                
+                const edgeKey = [Math.min(i, j), Math.max(i, j)].join('-');
+                if (drawnEdges.has(edgeKey)) continue;
+                drawnEdges.add(edgeKey);
+                
+                ctx.beginPath();
+                ctx.moveTo(positions[i].x, positions[i].y);
+                ctx.lineTo(positions[j].x, positions[j].y);
+                ctx.stroke();
+            }
+            
+            // Find hub
+            const hubIndex = findHubNode(degrees);
+            
+            // Draw nodes
+            nodes.forEach((node, i) => {
+                const pos = positions[i];
+                const isHub = i === hubIndex;
+                const nodeRadius = isHub ? 30 : 25;
+                
+                // Node circle
+                ctx.fillStyle = isHub ? '#f6ad55' : '#667eea';
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, nodeRadius, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Node border
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                
+                // Node label
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 14px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(node, pos.x, pos.y);
+                
+                // Degree label
+                ctx.fillStyle = '#2d3748';
+                ctx.font = '12px Arial';
+                ctx.fillText(`deg: ${degrees[i]}`, pos.x, pos.y + nodeRadius + 15);
+            });
+        }
+        
+        function showGraphResults(nodes, edges, matrix, degrees, hubIndex, density, avgDegree) {
+            const hubNode = nodes[hubIndex];
+            const results = document.getElementById('graphResults');
+            
+            let html = `
+                <div class="results">
+                    <h3>✅ Network Analysis Results</h3>
+                    <p><strong>Total Nodes:</strong> ${nodes.length} | <strong>Total Edges:</strong> ${edges.length}</p>
+                    <p><strong>Hub Node:</strong> ${hubNode} (degree ${degrees[hubIndex]}) - Critical infrastructure point</p>
+                    <p><strong>Network Density:</strong> ${density.toFixed(1)}% ${density > 60 ? '(Highly connected)' : density > 30 ? '(Moderately connected)' : '(Sparse network)'}</p>
+                    <p><strong>Average Degree:</strong> ${avgDegree.toFixed(2)}</p>
+                    
+                    <table class="metrics-table">
+                        <tr>
+                            <th>Node</th>
+                            <th>Degree</th>
+                            <th>Status</th>
+                        </tr>
+            `;
+            
+            nodes.forEach((node, i) => {
+                const status = i === hubIndex ? '🔥 Hub' : degrees[i] === 0 ? '⚠️ Isolated' : '✓ Connected';
+                html += `<tr><td><strong>${node}</strong></td><td>${degrees[i]}</td><td>${status}</td></tr>`;
+            });
+            
+            html += `
+                    </table>
+                    
+                    <h4 style="margin-top: 20px;">Adjacency Matrix:</h4>
+                    <div style="overflow-x: auto;">
+                        <table class="metrics-table">
+                            <tr>
+                                <th></th>
+            `;
+            
+            nodes.forEach(node => {
+                html += `<th>${node}</th>`;
+            });
+            html += `</tr>`;
+            
+            matrix.forEach((row, i) => {
+                html += `<tr><th>${nodes[i]}</th>`;
+                row.forEach(val => {
+                    html += `<td style="text-align: center;">${val}</td>`;
+                });
+                html += `</tr>`;
+            });
+            
+            html += `
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            results.innerHTML = html;
+        }
+        
+        function showGraphError(message) {
+            document.getElementById('graphResults').innerHTML = `
+                <div class="results error">
+                    <h3>❌ Error</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+        
+        function loadExample1() {
+            document.getElementById('nodesInput').value = 'A, B, C, D';
+            document.getElementById('edgesInput').value = 'A-B\nB-C\nC-A\nA-D';
+            visualizeGraph();
+        }
+        
+        function loadExample2() {
+            document.getElementById('nodesInput').value = 'Router1, Router2, Router3, Router4';
+            document.getElementById('edgesInput').value = 'Router1-Router2\nRouter2-Router3\nRouter3-Router4\nRouter4-Router1';
+            visualizeGraph();
+        }
+        
+        // ==================== HAMMING CODE ====================
+        
+        function hammingEncode() {
+            const message = document.getElementById('hammingMessage').value.trim();
+            
+            if (!/^[01]{4}$/.test(message)) {
+                showHammingError('encode', 'Invalid input! Enter exactly 4 binary digits (0 or 1)');
+                return;
+            }
+            
+            const d1 = parseInt(message[0]);
+            const d2 = parseInt(message[1]);
+            const d3 = parseInt(message[2]);
+            const d4 = parseInt(message[3]);
+            
+            // Calculate parity bits
+            const p1 = d1 ^ d2 ^ d4;
+            const p2 = d1 ^ d3 ^ d4;
+            const p4 = d2 ^ d3 ^ d4;
+            
+            const codeword = `${p1}${p2}${d1}${p4}${d2}${d3}${d4}`;
+            
+            document.getElementById('encodeResult').innerHTML = `
+                <div class="results">
+                    <h3>✅ Encoding Successful</h3>
+                    <p><strong>Original Message:</strong> <code>${message}</code> (4 bits)</p>
+                    <p><strong>Encoded Codeword:</strong> <code>${codeword}</code> (7 bits)</p>
+                    <p><strong>Parity Bits:</strong> P1=${p1}, P2=${p2}, P4=${p4}</p>
+                    <p style="margin-top: 10px; color: #2d3748;">
+                        <strong>Bit Positions:</strong> [P1=${p1}] [P2=${p2}] [D1=${d1}] [P4=${p4}] [D2=${d2}] [D3=${d3}] [D4=${d4}]
+                    </p>
+                    <p style="margin-top: 10px; padding: 10px; background: #e6fffa; border-radius: 6px;">
+                        💡 <strong>Try it:</strong> Copy this codeword to the decoder, change one bit, and see error correction!
+                    </p>
+                </div>
+            `;
+            
+            // Auto-fill decoder
+            document.getElementById('hammingReceived').value = codeword;
+        }
+        
+        function hammingDecode() {
+            const received = document.getElementById('hammingReceived').value.trim();
+            
+            if (!/^[01]{7}$/.test(received)) {
+                showHammingError('decode', 'Invalid input! Enter exactly 7 binary digits (0 or 1)');
+                return;
+            }
+            
+            const r = received.split('').map(Number);
+            
+            // Calculate syndrome bits
+            const s1 = r[0] ^ r[2] ^ r[4] ^ r[6];
+            const s2 = r[1] ^ r[2] ^ r[5] ^ r[6];
+            const s4 = r[3] ^ r[4] ^ r[5] ^ r[6];
+            
+            const syndrome = (s4 * 4) + (s2 * 2) + s1;
+            
+            let corrected = [...r];
+            let statusMessage = '';
+            let statusColor = '#48bb78';
+            
+            if (syndrome === 0) {
+                statusMessage = '✅ No error detected - data is clean!';
+            } else {
+                corrected[syndrome - 1] = 1 - corrected[syndrome - 1];
+                statusMessage = `✅ Error detected and corrected at position ${syndrome}`;
+                statusColor = '#f6ad55';
+            }
+            
+            const message = `${corrected[2]}${corrected[4]}${corrected[5]}${corrected[6]}`;
+            
+            document.getElementById('decodeResult').innerHTML = `
+                <div class="results">
+                    <h3 style="color: ${statusColor};">${statusMessage}</h3>
+                    <p><strong>Received Codeword:</strong> <code>${received}</code></p>
+                    <p><strong>Syndrome Value:</strong> <code>${s4}${s2}${s1}</code> (binary) = ${syndrome} (decimal)</p>
+                    ${syndrome !== 0 ? `<p><strong>Error Position:</strong> Bit ${syndrome}</p>` : ''}
+                    <p><strong>Corrected Codeword:</strong> <code>${corrected.join('')}</code></p>
+                    <p><strong>Recovered Message:</strong> <code>${message}</code> (original 4 data bits)</p>
+                    <p style="margin-top: 10px; padding: 10px; background: #f0fff4; border-radius: 6px;">
+                        ${syndrome === 0 
+                            ? '💚 Perfect transmission - no errors!' 
+                            : '🔧 Single-bit error automatically corrected - data integrity maintained!'}
+                    </p>
+                </div>
+            `;
+        }
+        
+        function showHammingError(target, message) {
+            const resultId = target === 'encode' ? 'encodeResult' : 'decodeResult';
+            document.getElementById(resultId).innerHTML = `
+                <div class="results error">
+                    <h3>❌ Error</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+        
+        // Initialize with default values on load
+        window.addEventListener('load', function() {
+            visualizeGraph();
+        });
+    </script>
+</body>
+</html>
