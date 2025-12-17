@@ -255,5 +255,60 @@
             <a href="https://github.com/Andrew14275/Code-to-Graph" style="color: #f6ad55; text-decoration: none; font-weight: 600;">View Source Code on GitHub →</a>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@4.0.0/lib/anime.min.js"></script>
+<script>
+    // Team cards appear with stagger
+    anime({
+        targets: '.team-card',
+        opacity: [0, 1],
+        translateY: [50, 0],
+        scale: [0.9, 1],
+        delay: anime.stagger(150, {start: 300}),
+        duration: 800,
+        easing: 'easeOutCubic'
+    });
+    
+    // Animate avatars
+    anime({
+        targets: '.team-avatar',
+        scale: [0, 1],
+        rotate: [180, 0],
+        delay: anime.stagger(150, {start: 400}),
+        duration: 1000,
+        easing: 'easeOutElastic(1, .6)'
+    });
+    
+    // Progress bars animate
+    anime({
+        targets: '.contribution-fill',
+        width: function(el) {
+            return el.style.width;
+        },
+        duration: 1500,
+        delay: anime.stagger(200, {start: 800}),
+        easing: 'easeOutQuad'
+    });
+    
+    // Timeline items
+    anime({
+        targets: '.timeline-item',
+        opacity: [0, 1],
+        translateX: [-50, 0],
+        delay: anime.stagger(200, {start: 600}),
+        duration: 800,
+        easing: 'easeOutQuad'
+    });
+    
+    // Title animation
+    anime({
+        targets: 'h1',
+        opacity: [0, 1],
+        scale: [0.9, 1],
+        duration: 800,
+        easing: 'easeOutQuad'
+    });
+</script>
+
+    
 </body>
 </html>

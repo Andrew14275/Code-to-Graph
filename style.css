@@ -1,4 +1,5 @@
-/* ==================== GLOBAL RESET ==================== */
+/* ==================== GOLDEN THEME - CODE TO GRAPH ==================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,9 +9,8 @@
 /* ==================== BASE STYLES ==================== */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
-    color: #2d3748;
+    background: #1a1a1a;
+    color: #D7D4CC;
     min-height: 100vh;
     line-height: 1.6;
 }
@@ -21,36 +21,39 @@ a {
     transition: all 0.3s ease;
 }
 
-/* ==================== NAVBAR ==================== */
+/* ==================== NAVBAR - GOLDEN ==================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 40px;
-    background: rgba(0, 0, 0, 0.25);
-    color: white;
+    padding: 20px 50px;
+    background: #0f0f0f;
+    border-bottom: 2px solid #FFE14D;
     position: sticky;
     top: 0;
-    backdrop-filter: blur(12px);
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(255, 225, 77, 0.1);
 }
 
 .logo {
-    font-size: 1.5em;
+    font-size: 1.6em;
     font-weight: bold;
+    color: #FFE14D;
     letter-spacing: -0.5px;
+    text-shadow: 0 0 20px rgba(255, 225, 77, 0.3);
 }
 
 .navbar nav {
     display: flex;
-    gap: 30px;
+    gap: 35px;
 }
 
 .navbar nav a {
     font-weight: 500;
+    color: #D7D4CC;
     position: relative;
-    padding: 5px 0;
+    padding: 8px 0;
+    transition: color 0.3s;
 }
 
 .navbar nav a::after {
@@ -60,136 +63,262 @@ a {
     left: 0;
     width: 0;
     height: 2px;
-    background: #f6ad55;
+    background: #FFE14D;
     transition: width 0.3s ease;
+}
+
+.navbar nav a:hover {
+    color: #FFE14D;
 }
 
 .navbar nav a:hover::after {
     width: 100%;
 }
 
-/* ==================== HERO SECTION ==================== */
+/* ==================== HERO SECTION - GOLDEN ==================== */
 .hero {
-    padding: 100px 40px 60px;
+    padding: 120px 40px 80px;
     text-align: center;
-    color: white;
-    max-width: 1000px;
-    margin: 0 auto;
+    background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+    border-bottom: 1px solid rgba(255, 225, 77, 0.2);
 }
 
 .hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
+    font-size: 3.2em;
+    margin-bottom: 24px;
     line-height: 1.2;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    color: #FFE14D;
+    text-shadow: 0 0 30px rgba(255, 225, 77, 0.3);
+    font-weight: 700;
 }
 
 .hero p {
-    font-size: 1.25em;
-    margin-bottom: 32px;
-    opacity: 0.95;
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    color: #D7D4CC;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0.9;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-/* ==================== BUTTONS ==================== */
+/* ==================== BUTTONS - GOLDEN THEME ==================== */
 .btn {
     display: inline-block;
-    padding: 14px 32px;
-    border-radius: 50px;
+    padding: 16px 40px;
+    border-radius: 8px;
     font-weight: 600;
-    font-size: 1em;
+    font-size: 1.05em;
     transition: all 0.3s ease;
     cursor: pointer;
     border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .btn.primary {
-    background: #f6ad55;
-    color: #2d3748;
-    box-shadow: 0 4px 15px rgba(246, 173, 85, 0.4);
+    background: #FFE14D;
+    color: #0f0f0f;
+    box-shadow: 0 4px 20px rgba(255, 225, 77, 0.4);
 }
 
 .btn.primary:hover {
-    background: #ed8936;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(246, 173, 85, 0.5);
+    background: #ffd700;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 30px rgba(255, 225, 77, 0.6);
 }
 
 .btn.secondary {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 2px solid white;
+    background: transparent;
+    color: #FFE14D;
+    border: 2px solid #FFE14D;
 }
 
 .btn.secondary:hover {
-    background: white;
-    color: #667eea;
+    background: #FFE14D;
+    color: #0f0f0f;
+    transform: translateY(-3px);
 }
 
 /* ==================== CONTAINER ==================== */
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
-/* ==================== SECTION ==================== */
+/* ==================== SECTION - GOLDEN CARDS ==================== */
 .section {
-    background: white;
-    margin: 30px auto;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-    max-width: 1200px;
+    background: #0f0f0f;
+    margin: 40px auto;
+    padding: 50px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 225, 77, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    max-width: 1300px;
 }
 
 .section h2 {
-    color: #2d3748;
-    margin-bottom: 20px;
-    font-size: 2em;
-    border-bottom: 3px solid #667eea;
-    padding-bottom: 12px;
+    color: #FFE14D;
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    font-weight: 700;
+    border-bottom: 3px solid #FFE14D;
+    padding-bottom: 15px;
+    text-shadow: 0 0 20px rgba(255, 225, 77, 0.2);
+}
+
+.section h3 {
+    color: #FFE14D;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
 }
 
 .section p {
-    color: #4a5568;
-    line-height: 1.8;
-    margin-bottom: 16px;
+    color: #D7D4CC;
+    line-height: 1.9;
+    margin-bottom: 18px;
+    font-size: 1.05em;
 }
 
-.section p + p {
-    margin-top: 12px;
+.section ul {
+    margin-left: 25px;
+    color: #D7D4CC;
+    line-height: 2;
+}
+
+.section ul li {
+    margin-bottom: 10px;
+}
+
+/* ==================== FEATURES GRID ==================== */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.feature-card:hover {
+    border-color: #FFE14D;
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(255, 225, 77, 0.2);
+}
+
+.feature-card h3 {
+    color: #FFE14D;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.feature-card p {
+    color: #D7D4CC;
+    line-height: 1.7;
+}
+
+/* ==================== STATS SECTION ==================== */
+.stats-section {
+    background: linear-gradient(135deg, #FFE14D 0%, #ffd700 100%);
+    padding: 70px 30px;
+    margin: 50px 0;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(255, 225, 77, 0.3);
+}
+
+.stats-section h2 {
+    color: #0f0f0f !important;
+    border: none !important;
+    margin-bottom: 50px;
+    font-size: 2.5em;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.stat-item {
+    color: #0f0f0f;
+}
+
+.stat-number {
+    font-size: 3.5em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.stat-label {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* ==================== TECH STACK ==================== */
+.tech-stack {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.tech-badge {
+    background: #1a1a1a;
+    border: 2px solid #FFE14D;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    color: #FFE14D;
+    font-size: 0.95em;
+    transition: all 0.3s;
+}
+
+.tech-badge:hover {
+    background: #FFE14D;
+    color: #0f0f0f;
+    transform: translateY(-2px);
 }
 
 /* ==================== RESPONSIVE DESIGN ==================== */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        gap: 16px;
-        padding: 16px 20px;
+        gap: 20px;
+        padding: 20px 25px;
     }
     
     .navbar nav {
-        gap: 16px;
+        gap: 20px;
         flex-wrap: wrap;
         justify-content: center;
     }
     
     .hero {
-        padding: 60px 20px 40px;
+        padding: 80px 25px 50px;
     }
     
     .hero h1 {
-        font-size: 2em;
+        font-size: 2.2em;
     }
     
     .hero p {
@@ -197,12 +326,12 @@ a {
     }
     
     .section {
-        padding: 24px;
-        margin: 20px 16px;
+        padding: 30px 25px;
+        margin: 25px 20px;
     }
     
     .section h2 {
-        font-size: 1.5em;
+        font-size: 1.8em;
     }
 }
 
@@ -210,7 +339,7 @@ a {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -218,6 +347,37 @@ a {
     }
 }
 
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 225, 77, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 225, 77, 0.6);
+    }
+}
+
 .section {
     animation: fadeIn 0.6s ease-out;
+}
+
+.logo {
+    animation: glow 3s infinite;
+}
+
+/* ==================== CUSTOM SCROLLBAR ==================== */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f0f0f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FFE14D;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffd700;
 }

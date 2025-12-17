@@ -3,103 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code-to-Graph | Interactive Graph Theory & Hamming Code Web App</title>
+    <title>Code-to-Graph | Interactive Graph Theory & Hamming Code Platform</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 30px;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 24px;
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #FFE14D;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
         }
         
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
-        .feature-card h3 {
-            color: #667eea;
-            margin-bottom: 12px;
-            font-size: 1.3em;
-        }
-        
-        .feature-card p {
-            color: #4a5568;
-            line-height: 1.6;
-        }
-        
-        .stats-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 60px 20px;
-            margin: 40px 0;
-            text-align: center;
-            border-radius: 20px;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .stat-item {
-            color: white;
-        }
-        
-        .stat-number {
-            font-size: 3em;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 8px;
-        }
-        
-        .stat-label {
-            font-size: 1.1em;
-            opacity: 0.9;
+        .icon-box svg {
+            width: 32px;
+            height: 32px;
+            stroke: #0f0f0f;
+            stroke-width: 2.5;
         }
         
         .cta-section {
-            background: white;
-            padding: 50px 30px;
+            background: #0f0f0f;
+            padding: 60px 40px;
             text-align: center;
-            border-radius: 16px;
-            margin: 40px auto;
-            max-width: 800px;
-        }
-        
-        .tech-stack {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .tech-badge {
-            background: #edf2f7;
-            padding: 8px 16px;
             border-radius: 20px;
-            font-weight: 600;
-            color: #4a5568;
-            font-size: 0.9em;
+            margin: 50px auto;
+            max-width: 900px;
+            border: 2px solid #FFE14D;
         }
     </style>
 </head>
 <body>
     <header class="navbar">
-        <div class="logo">📊 Code‑to‑Graph</div>
+        <div class="logo">
+            <i data-lucide="network"></i> Code‑to‑Graph
+        </div>
         <nav>
             <a href="index.html">Home</a>
             <a href="demo.html">Live Demo</a>
@@ -112,36 +54,49 @@
         <h1>Interactive Graph Theory & Hamming Code Web Application</h1>
         <p>From theoretical foundations to production-ready educational tool — a complete engineering journey</p>
         <div class="hero-buttons">
-            <a href="demo.html" class="btn primary">🚀 Try Live Demo</a>
-            <a href="report.html" class="btn secondary">📄 View Documentation</a>
+            <a href="demo.html" class="btn primary">
+                <i data-lucide="play-circle"></i> Try Live Demo
+            </a>
+            <a href="report.html" class="btn secondary">
+                <i data-lucide="file-text"></i> View Documentation
+            </a>
         </div>
     </section>
 
     <div class="container">
         <section class="section">
-            <h2>🎯 Project Overview</h2>
+            <h2>Project Overview</h2>
             <p>Code-to-Graph is a comprehensive three-stage self-learning project that transforms complex mathematical concepts into an accessible, interactive web application. Built for the Matrices & Differential Calculus curriculum at Shah and Anchor Kutchhi Engineering College.</p>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>📚 Stage 1: Theory</h3>
+                    <div class="icon-box">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <h3>Stage 1: Theory</h3>
                     <p>Deep dive into graph theory fundamentals, adjacency matrices, and Hamming(7,4) error correction codes. Mathematical foundations that power real-world systems.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <h3>💻 Stage 2: Implementation</h3>
+                    <div class="icon-box">
+                        <i data-lucide="code-2"></i>
+                    </div>
+                    <h3>Stage 2: Implementation</h3>
                     <p>Python-based algorithm development with comprehensive testing. 74 unit tests ensuring 100% correctness before deployment.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <h3>🌐 Stage 3: Web Application</h3>
+                    <div class="icon-box">
+                        <i data-lucide="globe"></i>
+                    </div>
+                    <h3>Stage 3: Web Application</h3>
                     <p>Client-side JavaScript implementation with Canvas-based visualization. Zero backend required, instant global deployment.</p>
                 </div>
             </div>
         </section>
 
         <div class="stats-section">
-            <h2 style="color: white; margin-bottom: 40px; font-size: 2em;">Project by the Numbers</h2>
+            <h2>Project by the Numbers</h2>
             <div class="stats-grid">
                 <div class="stat-item">
                     <span class="stat-number">3</span>
@@ -163,10 +118,13 @@
         </div>
 
         <section class="section">
-            <h2>✨ Key Features</h2>
+            <h2>Key Features</h2>
             
-            <h3 style="color: #667eea; margin-top: 20px;">🌐 Graph Network Visualizer</h3>
-            <ul style="line-height: 1.8; color: #4a5568; margin-left: 20px;">
+            <h3>
+                <i data-lucide="network" style="display: inline; vertical-align: middle; width: 28px; height: 28px; stroke: #FFE14D;"></i>
+                Graph Network Visualizer
+            </h3>
+            <ul>
                 <li>Real-time network topology visualization using HTML5 Canvas</li>
                 <li>Automatic adjacency matrix generation</li>
                 <li>Node degree calculation and hub identification</li>
@@ -174,8 +132,11 @@
                 <li>Support for custom node names and edge definitions</li>
             </ul>
             
-            <h3 style="color: #667eea; margin-top: 30px;">🔧 Hamming(7,4) Error Correction</h3>
-            <ul style="line-height: 1.8; color: #4a5568; margin-left: 20px;">
+            <h3 style="margin-top: 35px;">
+                <i data-lucide="shield-check" style="display: inline; vertical-align: middle; width: 28px; height: 28px; stroke: #FFE14D;"></i>
+                Hamming(7,4) Error Correction
+            </h3>
+            <ul>
                 <li>4-bit to 7-bit message encoding with parity bits</li>
                 <li>Automatic syndrome calculation</li>
                 <li>Single-bit error detection and correction</li>
@@ -185,7 +146,7 @@
         </section>
 
         <section class="section">
-            <h2>🛠️ Technology Stack</h2>
+            <h2>Technology Stack</h2>
             <div class="tech-stack">
                 <span class="tech-badge">HTML5</span>
                 <span class="tech-badge">CSS3</span>
@@ -195,25 +156,35 @@
                 <span class="tech-badge">Git</span>
                 <span class="tech-badge">VS Code</span>
             </div>
-            <p style="margin-top: 20px; color: #4a5568;">Zero frameworks, zero dependencies. Pure web technologies optimized for performance and accessibility.</p>
+            <p style="margin-top: 25px; text-align: center;">Zero frameworks, zero dependencies. Pure web technologies optimized for performance and accessibility.</p>
         </section>
 
         <div class="cta-section">
-            <h2 style="margin-bottom: 16px;">Ready to Explore?</h2>
-            <p style="color: #4a5568; margin-bottom: 24px; font-size: 1.1em;">
+            <h2 style="margin-bottom: 20px; color: #FFE14D;">Ready to Explore?</h2>
+            <p style="color: #D7D4CC; margin-bottom: 30px; font-size: 1.15em;">
                 Experience graph theory and error correction codes like never before
             </p>
-            <a href="demo.html" class="btn primary" style="font-size: 1.1em; padding: 16px 40px;">Launch Interactive Demo →</a>
+            <a href="demo.html" class="btn primary" style="font-size: 1.15em; padding: 18px 45px;">
+                <i data-lucide="arrow-right"></i> Launch Interactive Demo
+            </a>
         </div>
     </div>
 
-    <footer style="background: #2d3748; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
-        <p style="margin-bottom: 10px;"><strong>Code-to-Graph</strong> — A Self-Learning Micro Project</p>
-        <p style="opacity: 0.8; font-size: 0.9em;">Shah and Anchor Kutchhi Engineering College | Matrices & Differential Calculus</p>
-        <p style="opacity: 0.8; font-size: 0.9em; margin-top: 10px;">Academic Year 2025-2026</p>
-        <div style="margin-top: 20px;">
-            <a href="https://github.com/Andrew14275/Code-to-Graph" style="color: #f6ad55; text-decoration: none; font-weight: 600;">View on GitHub →</a>
+    <footer style="background: #0f0f0f; color: #D7D4CC; padding: 50px 30px; text-align: center; margin-top: 80px; border-top: 2px solid #FFE14D;">
+        <p style="margin-bottom: 12px; font-size: 1.1em;"><strong style="color: #FFE14D;">Code-to-Graph</strong> — A Self-Learning Micro Project</p>
+        <p style="opacity: 0.8; font-size: 0.95em;">Shah and Anchor Kutchhi Engineering College | Matrices & Differential Calculus</p>
+        <p style="opacity: 0.8; font-size: 0.95em; margin-top: 12px;">Academic Year 2025-2026</p>
+        <div style="margin-top: 25px;">
+            <a href="https://github.com/Andrew14275/Code-to-Graph" style="color: #FFE14D; text-decoration: none; font-weight: 600; font-size: 1.05em;">
+                <i data-lucide="github" style="display: inline; vertical-align: middle; width: 20px; height: 20px;"></i>
+                View on GitHub →
+            </a>
         </div>
     </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
